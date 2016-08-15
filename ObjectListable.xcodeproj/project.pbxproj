@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		5ACC00851D5E498B007EFEFD /* ObjectListable.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ACC00841D5E498B007EFEFD /* ObjectListable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5ACC00B61D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00B21D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift */; };
+		5ACC00B71D61E7A0007EFEFD /* ObjectListable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00B31D61E7A0007EFEFD /* ObjectListable.swift */; };
+		5ACC00B81D61E7A0007EFEFD /* ObjectListChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00B41D61E7A0007EFEFD /* ObjectListChangeDelegate.swift */; };
+		5ACC00B91D61E7A0007EFEFD /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00B51D61E7A0007EFEFD /* TableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5ACC00811D5E498B007EFEFD /* ObjectListable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ObjectListable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ACC00841D5E498B007EFEFD /* ObjectListable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectListable.h; sourceTree = "<group>"; };
 		5ACC00861D5E498B007EFEFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ACC00B21D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectCollectionChangeDelegate.swift; sourceTree = "<group>"; };
+		5ACC00B31D61E7A0007EFEFD /* ObjectListable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectListable.swift; sourceTree = "<group>"; };
+		5ACC00B41D61E7A0007EFEFD /* ObjectListChangeDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectListChangeDelegate.swift; sourceTree = "<group>"; };
+		5ACC00B51D61E7A0007EFEFD /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +54,22 @@
 		5ACC00831D5E498B007EFEFD /* ObjectListable */ = {
 			isa = PBXGroup;
 			children = (
+				5ACC00B11D5E6246007EFEFD /* Source */,
 				5ACC00841D5E498B007EFEFD /* ObjectListable.h */,
 				5ACC00861D5E498B007EFEFD /* Info.plist */,
 			);
 			path = ObjectListable;
+			sourceTree = "<group>";
+		};
+		5ACC00B11D5E6246007EFEFD /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				5ACC00B21D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift */,
+				5ACC00B31D61E7A0007EFEFD /* ObjectListable.swift */,
+				5ACC00B41D61E7A0007EFEFD /* ObjectListChangeDelegate.swift */,
+				5ACC00B51D61E7A0007EFEFD /* TableViewDataSource.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ACC00B71D61E7A0007EFEFD /* ObjectListable.swift in Sources */,
+				5ACC00B61D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift in Sources */,
+				5ACC00B91D61E7A0007EFEFD /* TableViewDataSource.swift in Sources */,
+				5ACC00B81D61E7A0007EFEFD /* ObjectListChangeDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +254,7 @@
 		5ACC008A1D5E498B007EFEFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -240,12 +265,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ENH.ObjectListable;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		5ACC008B1D5E498B007EFEFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
