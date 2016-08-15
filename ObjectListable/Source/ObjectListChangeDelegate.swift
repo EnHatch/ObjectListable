@@ -10,9 +10,8 @@ import UIKit
 
 // MARK: - ObjectListChangedDelegate Definition
 
-/// Functions to respond to feathed results controller changes
+/// Functions to respond to featched results controller changes
 public protocol ObjectListChangeDelegate: class {
-  // Can not use ErrorType becaues it does not conform to 
   func didFailToLoadObjects(error: NSError?)
   func didLoadObjects()
   func objectListWillChange()

@@ -73,9 +73,9 @@
 				5ACC00BE1D61EFF8007EFEFD /* ViewModel.swift */,
 				5ACC00BA1D61EBE4007EFEFD /* CollectionViewController.swift */,
 				5ACC00BB1D61EBE4007EFEFD /* TableViewController.swift */,
+				5ACC00B41D61E7A0007EFEFD /* ObjectListChangeDelegate.swift */,
 				5ACC00B21D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift */,
 				5ACC00B31D61E7A0007EFEFD /* ObjectListable.swift */,
-				5ACC00B41D61E7A0007EFEFD /* ObjectListChangeDelegate.swift */,
 				5ACC00B51D61E7A0007EFEFD /* TableViewDataSource.swift */,
 			);
 			path = Source;

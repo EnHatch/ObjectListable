@@ -14,7 +14,7 @@ public class TableViewController: UITableViewController, TableViewDataSource, Ob
 
   public init(viewModel: ObjectListable) {
     self.viewModel = viewModel
-    super.init(style: .Plain)
+    super.init(style: .Grouped)
     self.viewModel.objectListChangeDelegate = self
   }
 

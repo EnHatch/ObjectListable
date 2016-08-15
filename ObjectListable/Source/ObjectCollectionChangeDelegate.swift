@@ -13,8 +13,12 @@ public enum CollectionViewChange: String {
   case Delete
 }
 
+//A change to the data
+//Type is insert or delete
+//Change path is either an indexpath or index set for row/item or section respectively
 public typealias Change = (changeType: CollectionViewChange, changePath: AnyObject)
 
+//An array of changes that will be executed when objectListDidChange is called
 public protocol ObjectCollectionChangeDelegate: ObjectListChangeDelegate {
   var changes: [Change] { get set }
 }
