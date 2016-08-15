@@ -8,33 +8,33 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, TableViewDataSource, ObjectListChangeDelegate {
+public class TableViewController: UITableViewController, TableViewDataSource, ObjectListChangeDelegate {
 
-  var viewModel: ObjectListable
+  public var viewModel: ObjectListable
 
-  init(viewModel: ObjectListable) {
+  public init(viewModel: ObjectListable) {
     self.viewModel = viewModel
     super.init(style: .Plain)
     self.viewModel.objectListChangeDelegate = self
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return viewModel.numberOfSections()
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.numberOfRows(in: section)
   }
 
-  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+  public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return viewModel.titleForHeader(in: section)
   }
 
-  override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+  public override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
     return viewModel.sectionIndexTitles()
   }
 }

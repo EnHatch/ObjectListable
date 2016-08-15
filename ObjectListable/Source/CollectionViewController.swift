@@ -7,35 +7,34 @@
 //
 
 import UIKit
-import CoreData
 
-class CollectionViewController: UICollectionViewController, TableViewDataSource, ObjectCollectionChangeDelegate {
+public class CollectionViewController: UICollectionViewController, TableViewDataSource, ObjectCollectionChangeDelegate {
 
-  var viewModel: ObjectListable
+  public var viewModel: ObjectListable
 
   // For ObjectCollectionChangeDelegate.  Keeps changes from fetched results controller delegate so they can all be executed using performBatchUpdates.
-  var changes: [Change] = []
+  public var changes: [Change] = []
 
-  init(viewModel: ObjectListable, flowLayout: UICollectionViewFlowLayout) {
+  public init(viewModel: ObjectListable, flowLayout: UICollectionViewFlowLayout) {
     self.viewModel = viewModel
     super.init(collectionViewLayout: flowLayout)
     self.viewModel.objectListChangeDelegate = self
   }
   
-  required init?(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func viewDidLoad() {
+  public override func viewDidLoad() {
     super.viewDidLoad()
     viewModel.reloadData()
   }
 
-  override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+  public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     return viewModel.numberOfSections()
   }
 
-  override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  public override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return viewModel.numberOfRows(in: section)
   }
 }

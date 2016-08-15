@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TableViewDataSource {
+public protocol TableViewDataSource {
   var viewModel: ObjectListable { get }
 }
 

@@ -9,12 +9,12 @@
 import CoreData
 import Foundation
 
-class ViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDelegate {
+public class ViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDelegate {
   
-  var fetchedResultsController: NSFetchedResultsController
-  var objectListChangeDelegate: ObjectListChangeDelegate?
+  public var fetchedResultsController: NSFetchedResultsController
+  public var objectListChangeDelegate: ObjectListChangeDelegate?
 
-  init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, sectionNameKeyPath: String?) {
+  public init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, sectionNameKeyPath: String?) {
     fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
 
     super.init()
@@ -23,7 +23,7 @@ class ViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDelegate {
 }
 
 extension ViewModel {
-  func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
+  public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
                   atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
   {
     switch(type) {
@@ -49,7 +49,7 @@ extension ViewModel {
     }
   }
 
-  func controller( controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
+  public func controller( controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
                    atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
 
     switch type {
@@ -66,11 +66,11 @@ extension ViewModel {
     }
   }
 
-  func controllerWillChangeContent(controller: NSFetchedResultsController) {
+  public func controllerWillChangeContent(controller: NSFetchedResultsController) {
     objectListChangeDelegate?.objectListWillChange()
   }
 
-  func controllerDidChangeContent(controller: NSFetchedResultsController) {
+  public func controllerDidChangeContent(controller: NSFetchedResultsController) {
     objectListChangeDelegate?.objectListDidChange()
   }
 }
