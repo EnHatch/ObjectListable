@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  ListViewModel.swift
 //  FetchedResultsControllerDelegate
 //
 //  Created by Leo Reubelt on 8/12/16.
@@ -9,20 +9,22 @@
 import CoreData
 import Foundation
 
-public class ViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDelegate {
+public class ListViewModel: NSObject, ObjectListable {
   
   public var fetchedResultsController: NSFetchedResultsController
+
   public var objectListChangeDelegate: ObjectListChangeDelegate?
 
   public init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, sectionNameKeyPath: String?) {
     fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
 
     super.init()
+    
     fetchedResultsController.delegate = self
   }
 }
 
-extension ViewModel {
+extension ListViewModel: NSFetchedResultsControllerDelegate {
   public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
                   atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
   {
@@ -55,10 +57,10 @@ extension ViewModel {
     switch type {
     case .Insert:
       let sectionIndexSet = NSIndexSet(index: sectionIndex)
-      objectListChangeDelegate?.objectSectionWasInserted(at: sectionIndexSet)
+      objectListChangeDelegate?.sectionWasInserted(at: sectionIndexSet)
     case .Delete:
       let sectionIndexSet = NSIndexSet(index: sectionIndex)
-      objectListChangeDelegate?.objectSectionWasDeleted(at: sectionIndexSet)
+      objectListChangeDelegate?.sectionWasDeleted(at: sectionIndexSet)
     case .Move:
       return
     case .Update:

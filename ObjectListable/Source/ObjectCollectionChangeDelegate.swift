@@ -11,10 +11,11 @@ import UIKit
 public enum CollectionViewChange: String {
   case Insert
   case Delete
+  case Update
 }
 
 //A change to the data
-//Type is insert or delete
+//Type is insert or delete or update
 //Change path is either an indexpath or index set for row/item or section respectively
 public typealias Change = (changeType: CollectionViewChange, changePath: AnyObject)
 
@@ -35,7 +36,7 @@ public extension ObjectCollectionChangeDelegate where Self: UICollectionViewCont
 
   /// Tells the tableview to update rows of objects that have changed
   public func objectWasUpdated(at indexPath: NSIndexPath) {
-    collectionView?.reloadItemsAtIndexPaths([indexPath])
+    changes.append((CollectionViewChange.Update, indexPath))
   }
 
   /// Tells the tableview to insert rows for new objects
@@ -85,6 +86,10 @@ public extension ObjectCollectionChangeDelegate where Self: UICollectionViewCont
         collectionView?.deleteSections(sections)
       } else if let item = change.changePath as? NSIndexPath {
         collectionView?.deleteItemsAtIndexPaths([item])
+      }
+    case .Update:
+      if let item = change.changePath as? NSIndexPath {
+        collectionView?.reloadItemsAtIndexPaths([item])
       }
     }
   }

@@ -10,7 +10,6 @@ import CoreData
 import Foundation
 
  public protocol ObjectListable {
-
   var fetchedResultsController: NSFetchedResultsController { get set }
   var objectListChangeDelegate: ObjectListChangeDelegate? { get set }
 

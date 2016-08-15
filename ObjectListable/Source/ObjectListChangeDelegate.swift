@@ -19,8 +19,8 @@ public protocol ObjectListChangeDelegate: class {
   func objectWasUpdated(at indexPath: NSIndexPath)
   func objectWasInserted(at indexPath: NSIndexPath)
   func objectWasDeleted(at indexPath: NSIndexPath)
-  func objectSectionWasInserted(at sectionIndex: NSIndexSet)
-  func objectSectionWasDeleted(at sectionIndex: NSIndexSet)
+  func sectionWasInserted(at sectionIndex: NSIndexSet)
+  func sectionWasDeleted(at sectionIndex: NSIndexSet)
 }
 
 public extension ObjectListChangeDelegate where Self: UITableViewController {
