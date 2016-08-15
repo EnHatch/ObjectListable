@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CollectionViewController: UICollectionViewController, TableViewDataSource, ObjectCollectionChangeDelegate {
+public class CollectionViewController: UICollectionViewController, ViewModelable, ObjectCollectionChangeDelegate {
 
   public var viewModel: ObjectListable
 

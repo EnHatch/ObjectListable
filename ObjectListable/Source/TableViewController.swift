@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class TableViewController: UITableViewController, TableViewDataSource, ObjectListChangeDelegate {
+public class TableViewController: UITableViewController, ViewModelable, ObjectListChangeDelegate {
 
   public var viewModel: ObjectListable
 
