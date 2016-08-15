@@ -25,11 +25,6 @@ public class CollectionViewController: UICollectionViewController, TableViewData
     fatalError("init(coder:) has not been implemented")
   }
 
-  public override func viewDidLoad() {
-    super.viewDidLoad()
-    viewModel.reloadData()
-  }
-
   public override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
     return viewModel.numberOfSections()
   }
