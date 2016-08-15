@@ -14,6 +14,7 @@
 		5ACC00B91D61E7A0007EFEFD /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00B51D61E7A0007EFEFD /* TableViewDataSource.swift */; };
 		5ACC00BC1D61EBE4007EFEFD /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00BA1D61EBE4007EFEFD /* CollectionViewController.swift */; };
 		5ACC00BD1D61EBE4007EFEFD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00BB1D61EBE4007EFEFD /* TableViewController.swift */; };
+		5ACC00BF1D61EFF8007EFEFD /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC00BE1D61EFF8007EFEFD /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		5ACC00B51D61E7A0007EFEFD /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		5ACC00BA1D61EBE4007EFEFD /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		5ACC00BB1D61EBE4007EFEFD /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		5ACC00BE1D61EFF8007EFEFD /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		5ACC00B11D5E6246007EFEFD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				5ACC00BE1D61EFF8007EFEFD /* ViewModel.swift */,
 				5ACC00BA1D61EBE4007EFEFD /* CollectionViewController.swift */,
 				5ACC00BB1D61EBE4007EFEFD /* TableViewController.swift */,
 				5ACC00B21D61E7A0007EFEFD /* ObjectCollectionChangeDelegate.swift */,
@@ -162,6 +165,7 @@
 				5ACC00B91D61E7A0007EFEFD /* TableViewDataSource.swift in Sources */,
 				5ACC00B81D61E7A0007EFEFD /* ObjectListChangeDelegate.swift in Sources */,
 				5ACC00BC1D61EBE4007EFEFD /* CollectionViewController.swift in Sources */,
+				5ACC00BF1D61EFF8007EFEFD /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
