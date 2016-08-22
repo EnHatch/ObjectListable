@@ -59,12 +59,12 @@ public extension ObjectListChangeDelegate where Self: UITableViewController {
   }
 
   /// Tells the tableview a new section of objects was inserted
-  public func objectSectionWasInserted(at sectionIndex: NSIndexSet) {
+  public func sectionWasInserted(at sectionIndex: NSIndexSet) {
     tableView.insertSections(sectionIndex, withRowAnimation: .None)
   }
 
   /// Tells the tableview a sectino of objects was deleted
-  public func objectSectionWasDeleted(at sectionIndex: NSIndexSet) {
+  public func sectionWasDeleted(at sectionIndex: NSIndexSet) {
     tableView.deleteSections(sectionIndex, withRowAnimation: .None)
   }
 }
