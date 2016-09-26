@@ -22,6 +22,13 @@ public class ListViewModel: NSObject, ObjectListable {
     
     fetchedResultsController.delegate = self
   }
+
+  public init(fetchedResultsController: NSFetchedResultsController) {
+    self.fetchedResultsController = fetchedResultsController
+    super.init()
+
+    fetchedResultsController.delegate = self
+  }
 }
 
 extension ListViewModel: NSFetchedResultsControllerDelegate {
