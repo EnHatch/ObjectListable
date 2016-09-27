@@ -7,7 +7,7 @@
 //
 
 import CoreData
-import Foundation
+import Foundation 
 
 public class ListViewModel: NSObject, ObjectListable {
   
