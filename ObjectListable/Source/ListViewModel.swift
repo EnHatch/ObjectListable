@@ -15,6 +15,8 @@ public class ListViewModel: NSObject, ObjectListable {
 
   public var objectListChangeDelegate: ObjectListChangeDelegate?
 
+  public let basePredicate: NSPredicate?
+
   public init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, sectionNameKeyPath: String?) {
     fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
 
