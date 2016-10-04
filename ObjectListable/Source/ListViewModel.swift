@@ -19,7 +19,7 @@ public class ListViewModel: NSObject, ObjectListable {
 
   public init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, sectionNameKeyPath: String?) {
     fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
-
+    self.basePredicate = fetchRequest.predicate
     super.init()
     
     fetchedResultsController.delegate = self
@@ -27,6 +27,7 @@ public class ListViewModel: NSObject, ObjectListable {
 
   public init(fetchedResultsController: NSFetchedResultsController) {
     self.fetchedResultsController = fetchedResultsController
+    self.basePredicate = fetchedResultsController.fetchRequest.predicate
     super.init()
 
     fetchedResultsController.delegate = self
