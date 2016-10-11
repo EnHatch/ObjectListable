@@ -13,7 +13,7 @@ public class ListViewModel: NSObject, ObjectListable {
   
   public var fetchedResultsController: NSFetchedResultsController
 
-  public var objectListChangeDelegate: ObjectListChangeDelegate?
+  public weak var objectListChangeDelegate: ObjectListChangeDelegate?
 
   public let basePredicate: NSPredicate?
 
