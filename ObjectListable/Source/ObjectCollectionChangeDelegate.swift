@@ -17,7 +17,7 @@ public enum CollectionViewChange: String {
 //A change to the data
 //Type is insert or delete or update
 //Change path is either an indexpath or index set for row/item or section respectively
-public typealias Change = (changeType: CollectionViewChange, changePath: AnyObject)
+public typealias Change = (changeType: CollectionViewChange, changePath: Any)
 
 //An array of changes that will be executed when objectListDidChange is called
 public protocol ObjectCollectionChangeDelegate: ObjectListChangeDelegate {
@@ -26,7 +26,7 @@ public protocol ObjectCollectionChangeDelegate: ObjectListChangeDelegate {
 
 public extension ObjectCollectionChangeDelegate where Self: UICollectionViewController {
 
-  public func didFailToLoadObjects(error: NSError?) {
+  public func didFailToLoadObjects(_ error: NSError?) {
     print("Failed to load objects.  Error - \(error)")
   }
 
@@ -35,27 +35,27 @@ public extension ObjectCollectionChangeDelegate where Self: UICollectionViewCont
   }
 
   /// Tells the tableview to update rows of objects that have changed
-  public func objectWasUpdated(at indexPath: NSIndexPath) {
+  public func objectWasUpdated(at indexPath: IndexPath) {
     changes.append((CollectionViewChange.Update, indexPath))
   }
 
   /// Tells the tableview to insert rows for new objects
-  public func objectWasInserted(at indexPath: NSIndexPath) {
+  public func objectWasInserted(at indexPath: IndexPath) {
     changes.append((CollectionViewChange.Insert, indexPath))
   }
 
   /// Tells the tableview to delete rows for deleted objects
-  public func objectWasDeleted(at indexPath: NSIndexPath) {
+  public func objectWasDeleted(at indexPath: IndexPath) {
     changes.append((CollectionViewChange.Delete, indexPath))
   }
 
   /// Tells the tableview a new section of objects was inserted
-  public func sectionWasInserted(at sectionIndex: NSIndexSet) {
+  public func sectionWasInserted(at sectionIndex: IndexSet) {
     changes.append((CollectionViewChange.Insert, sectionIndex))
   }
 
   /// Tells the tableview a sectino of objects was deleted
-  public func sectionWasDeleted(at sectionIndex: NSIndexSet) {
+  public func sectionWasDeleted(at sectionIndex: IndexSet) {
     changes.append((CollectionViewChange.Delete, sectionIndex))
   }
 
@@ -73,23 +73,23 @@ public extension ObjectCollectionChangeDelegate where Self: UICollectionViewCont
       }, completion: nil)
   }
 
-  func perform(change: Change) {
+  func perform(_ change: Change) {
     switch change.changeType {
     case .Insert:
-      if let sections = change.changePath as? NSIndexSet {
+      if let sections = change.changePath as? IndexSet {
         collectionView?.insertSections(sections)
-      } else if let item = change.changePath as? NSIndexPath {
-        collectionView?.insertItemsAtIndexPaths([item])
+      } else if let item = change.changePath as? IndexPath {
+        collectionView?.insertItems(at: [item])
       }
     case .Delete:
-      if let sections = change.changePath as? NSIndexSet {
+      if let sections = change.changePath as? IndexSet {
         collectionView?.deleteSections(sections)
-      } else if let item = change.changePath as? NSIndexPath {
-        collectionView?.deleteItemsAtIndexPaths([item])
+      } else if let item = change.changePath as? IndexPath {
+        collectionView?.deleteItems(at: [item])
       }
     case .Update:
-      if let item = change.changePath as? NSIndexPath {
-        collectionView?.reloadItemsAtIndexPaths([item])
+      if let item = change.changePath as? IndexPath {
+        collectionView?.reloadItems(at: [item])
       }
     }
   }

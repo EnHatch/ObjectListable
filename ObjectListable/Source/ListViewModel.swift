@@ -9,15 +9,18 @@
 import CoreData
 import Foundation 
 
-public class ListViewModel: NSObject, ObjectListable {
+open class ListViewModel: NSObject, ObjectListable {
   
-  public var fetchedResultsController: NSFetchedResultsController
+  open var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
 
-  public weak var objectListChangeDelegate: ObjectListChangeDelegate?
+  open weak var objectListChangeDelegate: ObjectListChangeDelegate?
 
-  public let basePredicate: NSPredicate?
+  open let basePredicate: NSPredicate?
 
-  public init(fetchRequest: NSFetchRequest, managedObjectContext: NSManagedObjectContext, sectionNameKeyPath: String?) {
+  public init(fetchRequest: NSFetchRequest<NSFetchRequestResult>,
+              managedObjectContext: NSManagedObjectContext,
+              sectionNameKeyPath: String?) {
+
     fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
     self.basePredicate = fetchRequest.predicate
     super.init()
@@ -25,7 +28,8 @@ public class ListViewModel: NSObject, ObjectListable {
     fetchedResultsController.delegate = self
   }
 
-  public init(fetchedResultsController: NSFetchedResultsController) {
+  public init(fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>) {
+
     self.fetchedResultsController = fetchedResultsController
     self.basePredicate = fetchedResultsController.fetchRequest.predicate
     super.init()
@@ -35,23 +39,27 @@ public class ListViewModel: NSObject, ObjectListable {
 }
 
 extension ListViewModel: NSFetchedResultsControllerDelegate {
-  public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
-                  atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?)
-  {
+
+  public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                         didChange anObject: Any,
+                         at indexPath: IndexPath?,
+                         for type: NSFetchedResultsChangeType,
+                         newIndexPath: IndexPath?) {
+
     switch(type) {
-    case .Update:
+    case .update:
       if let updateIndexPath = indexPath {
         objectListChangeDelegate?.objectWasUpdated(at: updateIndexPath)
       }
-    case .Insert:
+    case .insert:
       if let insertIndexPath = newIndexPath {
         objectListChangeDelegate?.objectWasInserted(at: insertIndexPath)
       }
-    case .Delete:
+    case .delete:
       if let deleteIndexPath = indexPath {
         objectListChangeDelegate?.objectWasDeleted(at: deleteIndexPath)
       }
-    case .Move:
+    case .move:
       if let correctedIndexPath = indexPath {
         objectListChangeDelegate?.objectWasDeleted(at: correctedIndexPath)
       }
@@ -61,28 +69,30 @@ extension ListViewModel: NSFetchedResultsControllerDelegate {
     }
   }
 
-  public func controller( controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
-                   atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+  public func controller( _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                          didChange sectionInfo: NSFetchedResultsSectionInfo,
+                          atSectionIndex sectionIndex: Int,
+                          for type: NSFetchedResultsChangeType) {
 
     switch type {
-    case .Insert:
-      let sectionIndexSet = NSIndexSet(index: sectionIndex)
+    case .insert:
+      let sectionIndexSet = IndexSet(integer: sectionIndex)
       objectListChangeDelegate?.sectionWasInserted(at: sectionIndexSet)
-    case .Delete:
-      let sectionIndexSet = NSIndexSet(index: sectionIndex)
+    case .delete:
+      let sectionIndexSet = IndexSet(integer: sectionIndex)
       objectListChangeDelegate?.sectionWasDeleted(at: sectionIndexSet)
-    case .Move:
+    case .move:
       return
-    case .Update:
+    case .update:
       return
     }
   }
 
-  public func controllerWillChangeContent(controller: NSFetchedResultsController) {
+  public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     objectListChangeDelegate?.objectListWillChange()
   }
 
-  public func controllerDidChangeContent(controller: NSFetchedResultsController) {
+  public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     objectListChangeDelegate?.objectListDidChange()
   }
 }

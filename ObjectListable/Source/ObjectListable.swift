@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 
  public protocol ObjectListable {
-  var fetchedResultsController: NSFetchedResultsController { get set }
+  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get set }
   var objectListChangeDelegate: ObjectListChangeDelegate? { get set }
 
   func reloadData()
@@ -18,7 +18,7 @@ import Foundation
   func sectionIndexTitles() -> [String]?
   func numberOfSections() -> Int
   func numberOfRows(in section: Int) -> Int
-  func object(at indexPath: NSIndexPath) -> NSManagedObject?
+  func object(at indexPath: IndexPath) -> NSManagedObject?
 }
 
 extension ObjectListable {
@@ -70,7 +70,7 @@ extension ObjectListable {
   }
 
   /// Returns the fetchedResultsController's object at a specific indexPath
-  public func object(at indexPath: NSIndexPath) -> NSManagedObject? {
-    return fetchedResultsController.objectAtIndexPath(indexPath) as? NSManagedObject
+  public func object(at indexPath: IndexPath) -> NSManagedObject? {
+    return fetchedResultsController.object(at: indexPath) as? NSManagedObject
   }
 }
