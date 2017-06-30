@@ -39,7 +39,7 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
 
   //MARK: - NSFetchedResultsController Delegate
 
-  public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+  open func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                          didChange anObject: Any,
                          at indexPath: IndexPath?,
                          for type: NSFetchedResultsChangeType,
@@ -68,7 +68,7 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
     }
   }
 
-  public func controller( _ controller: NSFetchedResultsController<NSFetchRequestResult>,
+  open func controller( _ controller: NSFetchedResultsController<NSFetchRequestResult>,
                           didChange sectionInfo: NSFetchedResultsSectionInfo,
                           atSectionIndex sectionIndex: Int,
                           for type: NSFetchedResultsChangeType) {
@@ -87,11 +87,11 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
     }
   }
 
-  public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+  open func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     objectListChangeDelegate?.objectListWillChange()
   }
 
-  public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+  open func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     objectListChangeDelegate?.objectListDidChange()
   }
 }
