@@ -9,7 +9,7 @@
 import CoreData
 import Foundation 
 
-open class ListViewModel: NSObject, ObjectListable {
+open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDelegate {
   
   open var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
 
@@ -36,9 +36,8 @@ open class ListViewModel: NSObject, ObjectListable {
 
     fetchedResultsController.delegate = self
   }
-}
 
-extension ListViewModel: NSFetchedResultsControllerDelegate {
+  //MARK: - NSFetchedResultsController Delegate
 
   public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                          didChange anObject: Any,

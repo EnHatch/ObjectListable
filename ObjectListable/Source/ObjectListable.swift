@@ -22,10 +22,11 @@ import Foundation
 }
 
 extension ObjectListable {
+
   public func reloadData() {
     do {
       fetchedResultsController.fetchRequest.fetchBatchSize = 20
-      
+
       try fetchedResultsController.performFetch()
 
       objectListChangeDelegate?.didLoadObjects()
@@ -34,8 +35,6 @@ extension ObjectListable {
       objectListChangeDelegate?.didFailToLoadObjects(error)
     }
   }
-
-  // MARK: - TableView Helpers
 
   /// Returns the title for the header in section
   public func titleForHeader(in section: Int) -> String? {
