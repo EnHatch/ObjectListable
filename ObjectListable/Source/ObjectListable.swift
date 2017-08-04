@@ -11,7 +11,7 @@ import Foundation
 
  public protocol ObjectListable {
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get set }
-  var objectListChangeDelegate: ObjectListChangeDelegate? { get set }
+  weak var objectListChangeDelegate: ObjectListChangeDelegate? { get set }
 
   func reloadData()
   func titleForHeader(in section: Int) -> String?
