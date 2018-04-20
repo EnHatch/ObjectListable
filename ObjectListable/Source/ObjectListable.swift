@@ -38,9 +38,15 @@ extension ObjectListable {
 
   /// Returns the title for the header in section
   public func titleForHeader(in section: Int) -> String? {
+
     guard let sections = fetchedResultsController.sections else {
       return nil
     }
+
+    if sections.isEmpty {
+      return nil
+    }
+
     let sectionInfo = sections[section]
     return sectionInfo.name
   }
@@ -61,9 +67,15 @@ extension ObjectListable {
   /// Returns the number of rows in a tableview section
   /// - parameter section: Section for which number of rows are required
   public func numberOfRows(in section: Int) -> Int {
+
     guard let sections = fetchedResultsController.sections else {
       return 0
     }
+
+    if sections.isEmpty {
+      return 0
+    }
+
     let sectionInfo = sections[section]
     return sectionInfo.numberOfObjects
   }
