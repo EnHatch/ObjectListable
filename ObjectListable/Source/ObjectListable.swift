@@ -11,7 +11,7 @@ import Foundation
 
  public protocol ObjectListable {
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> { get set }
-  weak var objectListChangeDelegate: ObjectListChangeDelegate? { get set }
+  var objectListChangeDelegate: ObjectListChangeDelegate? { get set }
 
   func reloadData()
   func titleForHeader(in section: Int) -> String?
@@ -25,10 +25,9 @@ extension ObjectListable {
 
   public func reloadData() {
     do {
+
       fetchedResultsController.fetchRequest.fetchBatchSize = 20
-
       try fetchedResultsController.performFetch()
-
       objectListChangeDelegate?.didLoadObjects()
 
     } catch let error as NSError {

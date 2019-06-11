@@ -15,13 +15,16 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
 
   open weak var objectListChangeDelegate: ObjectListChangeDelegate?
 
-  open let basePredicate: NSPredicate?
+  public let basePredicate: NSPredicate?
 
   public init(fetchRequest: NSFetchRequest<NSFetchRequestResult>,
               managedObjectContext: NSManagedObjectContext,
               sectionNameKeyPath: String?) {
 
-    fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: sectionNameKeyPath, cacheName: nil)
+    fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                          managedObjectContext: managedObjectContext,
+                                                          sectionNameKeyPath: sectionNameKeyPath,
+                                                          cacheName: nil)
     self.basePredicate = fetchRequest.predicate
     super.init()
     

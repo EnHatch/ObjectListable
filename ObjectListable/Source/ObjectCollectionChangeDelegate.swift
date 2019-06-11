@@ -27,7 +27,7 @@ public protocol ObjectCollectionChangeDelegate: ObjectListChangeDelegate {
 public extension ObjectCollectionChangeDelegate where Self: UICollectionViewController {
 
   public func didFailToLoadObjects(_ error: NSError?) {
-    print("Failed to load objects.  Error - \(error)")
+    print("Failed to load objects.  Error - \(String(describing: error))")
   }
 
   public func didLoadObjects() {
