@@ -87,8 +87,6 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
       return
     case .update:
       return
-    @unknown default:
-      <#fatalError()#>
     }
   }
 
