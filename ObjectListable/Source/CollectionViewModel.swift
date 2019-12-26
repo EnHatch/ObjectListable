@@ -1,20 +1,18 @@
 //
-//  ListViewModel.swift
-//  FetchedResultsControllerDelegate
+//  CollectionViewModel.swift
+//  ObjectListable
 //
-//  Created by Leo Reubelt on 8/12/16.
-//  Copyright © 2016 Enhatch. All rights reserved.
+//  Created by Leo Reubelt on 12/26/19.
+//  Copyright © 2019 Enhatch. All rights reserved.
 //
 
 import CoreData
-import Foundation 
+import Foundation
 
-open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDelegate {
+open class CollectionViewModel: NSObject, ObjectCollectionable, NSFetchedResultsControllerDelegate {
   
   open var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
-
-  open weak var objectListChangeDelegate: ObjectListChangeDelegate?
-
+  open weak var objectCollectionChangeDelegate: ObjectCollectionChangeDelegate?
   public let basePredicate: NSPredicate?
 
   public init(fetchRequest: NSFetchRequest<NSFetchRequestResult>,
@@ -27,7 +25,7 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
                                                           cacheName: nil)
     self.basePredicate = fetchRequest.predicate
     super.init()
-    
+
     fetchedResultsController.delegate = self
   }
 
@@ -51,22 +49,22 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
     switch(type) {
     case .update:
       if let updateIndexPath = indexPath {
-        objectListChangeDelegate?.objectWasUpdated(at: updateIndexPath)
+        objectCollectionChangeDelegate?.objectWasUpdated(at: updateIndexPath)
       }
     case .insert:
       if let insertIndexPath = newIndexPath {
-        objectListChangeDelegate?.objectWasInserted(at: insertIndexPath)
+        objectCollectionChangeDelegate?.objectWasInserted(at: insertIndexPath)
       }
     case .delete:
       if let deleteIndexPath = indexPath {
-        objectListChangeDelegate?.objectWasDeleted(at: deleteIndexPath)
+        objectCollectionChangeDelegate?.objectWasDeleted(at: deleteIndexPath)
       }
     case .move:
       if let correctedIndexPath = indexPath {
-        objectListChangeDelegate?.objectWasDeleted(at: correctedIndexPath)
+        objectCollectionChangeDelegate?.objectWasDeleted(at: correctedIndexPath)
       }
       if let correctedNewIndexPath = newIndexPath {
-        objectListChangeDelegate?.objectWasInserted(at: correctedNewIndexPath)
+        objectCollectionChangeDelegate?.objectWasInserted(at: correctedNewIndexPath)
       }
     }
   }
@@ -79,24 +77,22 @@ open class ListViewModel: NSObject, ObjectListable, NSFetchedResultsControllerDe
     switch type {
     case .insert:
       let sectionIndexSet = IndexSet(integer: sectionIndex)
-      objectListChangeDelegate?.sectionWasInserted(at: sectionIndexSet)
+      objectCollectionChangeDelegate?.sectionWasInserted(at: sectionIndexSet)
     case .delete:
       let sectionIndexSet = IndexSet(integer: sectionIndex)
-      objectListChangeDelegate?.sectionWasDeleted(at: sectionIndexSet)
+      objectCollectionChangeDelegate?.sectionWasDeleted(at: sectionIndexSet)
     case .move:
       return
     case .update:
       return
-    @unknown default:
-      <#fatalError()#>
     }
   }
 
   open func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    objectListChangeDelegate?.objectListWillChange()
+    objectCollectionChangeDelegate?.objectListWillChange()
   }
 
   open func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    objectListChangeDelegate?.objectListDidChange()
+    objectCollectionChangeDelegate?.objectListDidChange()
   }
 }
